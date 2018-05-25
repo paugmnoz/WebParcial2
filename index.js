@@ -1,6 +1,5 @@
 //guardar librería en una constante
 const express = require('express'),
-express = require('express'),
 engines = require('consolidate');
 
 //crear app
@@ -13,8 +12,9 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => { 
-    
-});
+    res.render(
+        'index')
+}); 
 
 app.listen(7070, function () {
     console.log('done in port 7070');
