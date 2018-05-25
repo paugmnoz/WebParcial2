@@ -30,8 +30,8 @@ app.get('/', (req, res) => {
     
     res.render(
         'index', {
-            titulo: 'Inicio'
-            
+            titulo: 'Inicio',
+            visitas: visitaInicio
         })
 
      
