@@ -13,25 +13,50 @@ app.set('views', './views');
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
-var visitaContacto, visitaInicio, visitaProducto;
+var visitaContacto = 0, visitaInicio =0, visitaProducto =0;
+
+
+var text = fs.readFileSync('visitas.txt', 'utf8');
+
+function actualizartxt() {
+    var nuevoTxt;
+    nuevoTxt = "[Inicio: " + visitaInicio + ", Contacto: " + visitaContacto + ", Producto: " + visitaProducto + "]";
+    fs.writeFileSync('visitas.txt', nuevoTxt);
+}
 
 app.get('/', (req, res) => { 
+    visitaInicio+=1;
+    actualizartxt();
+    
     res.render(
-        'index')
+        'index', {
+            titulo: 'Inicio'
+            
+        })
 
      
 }); 
 
 app.get('/contacto', (req, res) => { 
+    visitaContacto +=1;
+    actualizartxt();
     res.render(
-        'contacto')
+        'contacto', {
+            titulo: 'Contacto'
+        })
 
      
 }); 
 
 app.get('/producto', (req, res) => { 
+    visitaProducto +=1;
+    actualizartxt();
+    
     res.render(
-        'producto')
+        'producto', {
+            titulo: 'Producto'
+            
+        })
 
      
 }); 
